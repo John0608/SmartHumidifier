@@ -116,6 +116,7 @@ void loop() {
 }
 
 
+
 // void colorWipe(uint32_t c, uint8_t wait){
 //   for(uint16_t i=0; i<strip.numiPxels(); i++){
 //     strip.setPixelColor(i,c);9
