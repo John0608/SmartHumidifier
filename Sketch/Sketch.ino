@@ -31,25 +31,34 @@ private:
 class Rotary_Encoder {
 public:
   void setup() {
-
-    // Attach interrupts to static member functions
-    attachInterrupt(digitalPinToInterrupt(CLK), &Rotary_Encoder::CLICK_ISR, RISING);
+    pinMode(CLK, INPUT);
+    pinMode(SW, INPUT_PULLUP);
+    pinMode(DT, INPUT);
+    attachInterrupt(digitalPinToInterrupt(CLK), &Rotary_Encoder::CLICK_ISR, CHANGE);
     attachInterrupt(digitalPinToInterrupt(SW), &Rotary_Encoder::SWITCH_ISR, RISING);
   }
   
   static unsigned long milli_sec;
+  static int old_DT;
+  static int direction; // 방향 저장 변수
+  static int virtualPosition; // 정적으로 선언
 
   static void CLICK_ISR() {
-    unsigned long ms = millis();
-    if (get_ms() != ms) {
-      Serial.println("클릭");
-      update_ms(ms);
-    }
-  }
+    boolean up = (digitalRead(DT) == digitalRead(CLK));
+    static boolean TurnDetected = false;
 
-  static void DIRECTION_ISR() {
-    // Handle DIRECTION interrupt
-    //Serial.println("돌림");
+    if (up) {
+      //왼쪽으로 돌렸을 때
+    } else {
+      //오른쪽으로 돌렸을 때
+    }
+    TurnDetected = true;
+
+    if (TurnDetected) {
+      Serial.print("Count = ");
+      Serial.println(virtualPosition);
+      TurnDetected = false;
+    }
   }
 
   static void SWITCH_ISR() {
@@ -69,12 +78,29 @@ public:
   }
 
 private:
-  const int CLK = 2;
-  const int DT = 4;
+  static const int CLK = 2;
+  static const int DT = 4;
   static const int SW = 3;
 };
 
+class detect_water {
+public:
+  void setup() {
+    // attachInterrupt(analogPinToInterrupt(PIN), &detect_water::detect, CHANGE);
+  }
+
+  static void detect() {
+    Serial.println("빗물 감지됨");
+  }
+
+private:
+  static const int PIN = A3;
+};
+
 unsigned long Rotary_Encoder::milli_sec = 0;
+int Rotary_Encoder::old_DT = 0;
+int Rotary_Encoder::direction = 0;
+int Rotary_Encoder::virtualPosition = 0; // 정적으로 선언
 
 detect_Hum hum; // 객체 생성시 'new' 연산자 사용하지 않음
 Rotary_Encoder encoder;
@@ -88,9 +114,6 @@ void setup() {
 void loop() {
   // Your loop code here
 }
-
-
-
 
 
 // void colorWipe(uint32_t c, uint8_t wait){
