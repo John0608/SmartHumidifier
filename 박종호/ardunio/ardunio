@@ -1,0 +1,42 @@
+#include <SoftwareSerial.h>
+#include <EasyVR.h>
+
+#define BT_RXD 2
+#define BT_TXD 3
+
+SoftwareSerial bluetooth(BT_RXD, BT_TXD);
+EasyVR easyvr(Serial);
+
+void setup() {
+  Serial.begin(9600);
+  bluetooth.begin(9600);
+  easyvr.setPinOutput(EasyVR::IO1, LOW);
+  easyvr.setTimeout(5);
+}
+
+void loop() {
+  if (bluetooth.available()) {
+    int rd = bluetooth.read();
+    Recive_data(rd);
+  }
+  
+  easyvr.setPinOutput(EasyVR::IO1, LOW);
+  if (easyvr.detect()) {
+    int16_t id = easyvr.getID();
+    switch (id) {
+      case 1:
+        // 처리할 명령 1
+        break;
+      case 2:
+        // 처리할 명령 2
+        break;
+      // 다른 명령들에 대한 처리 추가
+      default:
+        break;
+    }
+  }
+}
+
+void Recive_data(char data) {
+  // 블루투스 데이터 수신 처리
+}
