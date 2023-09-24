@@ -1,0 +1,25 @@
+#line 1 "C:\\Users\\dygks\\바탕 화면\\졸작\\SmartHumidifier\\Build\\.vscode\\c_cpp_properties.json"
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:\\Program Files (x86)\\Arduino\\tools\\**",
+                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\**",
+                "C:\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\avr\\include", // 추가
+                "C:\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\lib\\gCc\\avr\\7.3.0\\include\\**", // 추가 - 자신의 PC 경로 확인 필요
+                "${workspaceFolder}\\lib\\Adafruit_SSD1306\\**",
+                "${workspaceFolder}\\**",
+                "${workspaceFolder}\\lib\\**"
+            ],
+            "forcedInclude": [
+                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
+            ],
+            "intelliSenseMode": "msvc-x64",
+            "defines": [
+                "USBCON" // serial 클래스 쓸경우 Include 에러 방지
+            ]
+        }
+    ],
+    "version": 4
+}

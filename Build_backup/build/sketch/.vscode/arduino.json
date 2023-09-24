@@ -1,0 +1,8 @@
+#line 1 "C:\\Users\\dygks\\바탕 화면\\졸작\\SmartHumidifier\\Build\\.vscode\\arduino.json"
+{
+    "sketch": "Build.ino",
+    "output": "build",
+    "board": "arduino:avr:uno",
+    "programmer": "avrisp",
+    "port": "COM6"
+}
