@@ -4,8 +4,11 @@
 #include <Adafruit_SSD1306.h>
 #include <SPI.h>
 #include <Adafruit_GFX.h>
+
 #include "MyOLED.h"
 #include "Rotary_Encoder.h"
+#include "LED_Strap.h"
+#include "detect_Hum.h"
 
 // 로터리 엔코더 핀
 static int now_hum = 0;
@@ -13,38 +16,12 @@ static int target_hum = 0;
 static int count = 0; 
 
 extern Rotary_Encoder encoder;
+extern MyOLED myOLED;
+extern LED_Strap led_strap;
+extern detect_Hum d_Hum;
 
-class LED_Strap : public Adafruit_NeoPixel
-{
-public:
-    LED_Strap() : Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800)
-    {
-        begin();
-        setBrightness(BRIGHTNESS);
-    }
 
-private:
-    static const uint8_t PIN = 7;
-    static const uint16_t NUMPIXELS = 280;
-    static const uint8_t BRIGHTNESS = 180;
-};
 
-class detect_Hum : public DHT
-{
-public:
-    detect_Hum() : DHT(PIN, DHT11)
-    {
-        begin();
-    }
-
-    float getHum()
-    {
-        return readHumidity(); // Use the DHT library's readHumidity() method;
-    }
-
-private:
-    static const uint8_t PIN = A1;
-};
 
 class detect_water
 {

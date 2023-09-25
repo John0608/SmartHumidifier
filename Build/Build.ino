@@ -6,13 +6,14 @@
 // unsigned long Rotary_Encoder::last_milli_sec = 0;
 MyOLED myOLED;
 Rotary_Encoder encoder;
-
+LED_Strap led;
 
 void setup() {
   Serial.begin(9600);
 
   myOLED.begin();
   encoder.setup();
+  
   
   encoder.oled_Link(&myOLED);
   myOLED.RT_Link(&encoder);
