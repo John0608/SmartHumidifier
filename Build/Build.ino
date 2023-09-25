@@ -10,17 +10,17 @@ Rotary_Encoder encoder;
 
 void setup() {
   Serial.begin(9600);
+
   myOLED.begin();
+  encoder.setup();
+  
   encoder.oled_Link(&myOLED);
   myOLED.RT_Link(&encoder);
+  
   delay(2000);
   // Your setup code here
 }
 
-unsigned int a = 0;
 void loop() {
-  myOLED.clearDisplay(); 
-  myOLED.displayText(0,0,"num : ",a);
-  a++;
-  delay(500);
+
 }

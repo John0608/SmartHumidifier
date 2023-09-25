@@ -1,8 +1,5 @@
 #include "MyOLED.h"
 
-MyOLED::MyOLED() {
-    display(128, 32, &Wire, -1);
-}
 
 void MyOLED::begin(){
     if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
@@ -35,11 +32,7 @@ void MyOLED::displayText(int x, int y, const char* text1, unsigned int text2) {
     display.print(text2, DEC);
     display.display();
   }
-void MyOLED::displayBitmap(const uint8_t* bitmap, int width, int height) {
-    display.drawBitmap(0, 0, bitmap, width, height, SSD1306_WHITE);
-    display.display();
-    }
 
-void MyOLED::RT_Link(Rotary_Encoder rt_obj) {
-    rt_object = rt_obj;
+void MyOLED::RT_Link(Rotary_Encoder* rt_object) {
+    rt_object = rt_object;
 }
