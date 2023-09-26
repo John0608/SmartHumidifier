@@ -1,3 +1,5 @@
+#include <Thread.h>
+
 #include <Adafruit_NeoPixel.h>
 #include <DHT.h>
 #include <Wire.h>
