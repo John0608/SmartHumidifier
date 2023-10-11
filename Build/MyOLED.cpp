@@ -9,7 +9,7 @@ void MyOLED::begin(){
     display.setTextSize(2);
     display.setTextColor(SSD1306_WHITE);
     display.setCursor(1, 1);
-    display.print("Hello World");
+    // display.print("Hello World");
     display.display();
 }
 
