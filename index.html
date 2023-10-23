@@ -94,13 +94,12 @@
         let characteristica;
 
         window.onload = function() {
-            navigator.bluetooth.getAvailability().then(available => {
-                if (available) {
-                    $(".bt_con").css('display', 'flex');
-                } else {
-                    $(".bt_notSupport").css('display', 'flex');
-                }
-            })
+            if ('bluetooth' in navigator) {
+                $(".bt_con").css('display', 'flex');
+            }
+            else {
+                $(".bt_notSupport").css('display', 'flex');
+            }
         }
 
         function getBT() {
