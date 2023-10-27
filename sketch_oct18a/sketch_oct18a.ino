@@ -4,6 +4,7 @@
 #include <ThreadController.h>
 #include <DHT.h>
 #include <SoftwareSerial.h>
+
 #include <assert.h>
 #include <ArduinoJson.h>
 
@@ -11,7 +12,8 @@
 #define Encoder_DT 7
 #define Encoder_SW 6
 
-#define DetectHum_Pin A1
+
+
 
 #define Hum_PIN 8
 
@@ -130,7 +132,7 @@ void rt_update() {
     } else {
       // 오른쪽으로 돌렸을 때
       Serial.println("RIGHT");
-      if (hum_target < 80 && Power) {
+      if (hum_target < 100 && Power) {
         ++hum_target;
       }
     }
